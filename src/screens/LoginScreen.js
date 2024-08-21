@@ -1,22 +1,24 @@
 import { useNavigation } from "@react-navigation/native";
-import React from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, Image, TouchableOpacity, TextInput } from "react-native";
-import Animated, {
-  FadeIn,
-  FadeInDown,
-  FadeInUp,
-  FadeOut,
-} from "react-native-reanimated";
-// import { StatusBar } from "expo-status-bar";
+import Animated, { FadeInDown, FadeInUp } from "react-native-reanimated";
+import { UserContext } from "../context/UserContext";
 
 const LoginScreen = () => {
   const navigation = useNavigation();
+  const { setUser } = useContext(UserContext);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = () => {
+    setUser(email);
+    navigation.navigate("Home");
+  };
   return (
     <View className="h-full w-full absolute">
-      {/* <StatusBar style="light" /> */}
       <Image
         className="h-full w-full absolute"
-        source={require("../assets/images/background.jpg")}
+        source={require("../../assets/images/background.jpg")}
       />
       <View className="h-full w-full flex-justify-around pt-40 pb-10">
         <View className="flex items-center">
@@ -48,7 +50,10 @@ const LoginScreen = () => {
             entering={FadeInDown.delay(400).duration(1000).springify()}
             className="w-full"
           >
-            <TouchableOpacity className="w-full bg-sky-400 p-3 rounded-2xl mb-3">
+            <TouchableOpacity
+              className="w-full bg-sky-400 p-3 rounded-2xl mb-3"
+              onPress={handleLogin}
+            >
               <Text className="text-xl font-bold text-white text-center">
                 Login
               </Text>

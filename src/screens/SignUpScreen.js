@@ -16,7 +16,7 @@ const SignUpScreen = () => {
       {/* <StatusBar style="light" /> */}
       <Image
         className="h-full w-full absolute"
-        source={require("../assets/images/background.jpg")}
+        source={require("../../assets/images/background.jpg")}
       />
       <View className="h-full w-full flex-justify-around pt-48">
         <View className="flex items-center">
